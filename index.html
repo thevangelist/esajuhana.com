@@ -1,76 +1,21 @@
-<!--
-
-Life is short... You ought to check a movie called:
-
-_  _______   __ _        _    _   _ ___ ____   ___      _  _____ ____ ___
-| |/ / _ \ \ / // \      / \  | \ | |_ _/ ___| / _ \    / \|_   _/ ___|_ _|
-| ' / | | \ V // _ \    / _ \ |  \| || |\___ \| | | |  / _ \ | | \___ \| |
-| . \ |_| || |/ ___ \  / ___ \| |\  || | ___) | |_| | / ___ \| |  ___) | |
-|_|\_\___/ |_/_/   \_\/_/   \_\_| \_|___|____/ \__\_\/_/   \_\_| |____/___|
-
-
-If you are still reading here... check IMDB: https://www.imdb.com/title/tt0085809/
-
-And here goes, the perfect HTML5, for you all nerdies:
-
--->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>𝒮𝑒𝑒, 𝐼 𝑔𝑜𝑡 𝓎𝑜𝑢𝑟 𝒶𝓉𝓉𝑒𝓃𝓉𝒾𝑜𝓃....</title>
-    <link rel="icon" type="image/x-icon" href="favicon.webp" />
+    <title>esajuhana.com</title>
+
+    <!-- Red Hat Display font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
-
-    <style>
-      html,
-      body {
-        margin: 0;
-      }
-      body {
-        font-family: sans-serif;
-        background: #f3f3f3;
-        color: #324;
-        border-top: 60px solid red;
-        font-family: "Titillium Web";
-      }
-      main {
-        margin: 0 auto;
-        width: 100%;
-        text-align: center;
-        padding: 0.2em;
-      }
-
-      h1,
-      h2,
-      h3 {
-        line-height: 1.366;
-        margin: 0;
-        padding: 0;
-      }
-      main > * {
-        margin: 1em 0;
-      }
-      @media only screen and (min-width: 600px) {
-        main {
-          width: 600px;
-        }
-      }
-    </style>
   </head>
   <body>
-    <main>
-      <h1>HTTP 200</h1>
-      <h3><i>For a second, You probably thought this is a server error.</i></h3>
-      <p>Everything, because I decided so.</p>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
-  <!-- Congrats, you just rendered the whole website in your mind! This comment you can skip before closing the "HYPERTEXT MARKUP LANGUAGE" -->
 </html>
-<!-- Something is over. -->

@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-sans: 'Red Hat Display', system-ui, sans-serif;
+
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f5f5f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-900: #18181b;
+
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+}
+
+@layer base {
+  body {
+    background: radial-gradient(ellipse at center, #120a1f 0%, #0a0a0f 50%, #0a0a0f 100%);
+  }
+}
+
+@layer utilities {
+  .quirky-underline {
+    position: relative;
+    display: inline;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.1em;
+  }
+}
