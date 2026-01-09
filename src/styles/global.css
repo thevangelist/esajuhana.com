@@ -3,24 +3,56 @@
 @theme {
   --font-family-sans: 'Red Hat Display', system-ui, sans-serif;
 
-  --color-zinc-50: #fafafa;
+  --color-zinc-50: #ffffff;
   --color-zinc-100: #f5f5f5;
-  --color-zinc-200: #e4e4e7;
-  --color-zinc-400: #a1a1aa;
-  --color-zinc-500: #71717a;
-  --color-zinc-600: #52525b;
-  --color-zinc-900: #18181b;
+  --color-zinc-200: #e4e4e4;
+  --color-zinc-400: #a1a1a1;
+  --color-zinc-500: #717171;
+  --color-zinc-600: #525252;
+  --color-zinc-900: #000000;
 
-  --color-purple-500: #a855f7;
-  --color-purple-600: #9333ea;
-  
-  --color-yellow-400: #facc15;
-  --color-yellow-500: #eab308;
+  --color-purple-500: #ffffff;
+  --color-purple-600: #f5f5f5;
+
+  --color-yellow-400: #ffffff;
+  --color-yellow-500: #f5f5f5;
 }
 
 @layer base {
   body {
-    background: radial-gradient(ellipse at center, #120a1f 0%, #0a0a0f 50%, #0a0a0f 100%);
+    background: #000000;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
+    animation: tv-noise 0.2s infinite;
+  }
+
+  @keyframes tv-noise {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-1px, 1px); }
+    20% { transform: translate(1px, 0px); }
+    30% { transform: translate(0px, -1px); }
+    40% { transform: translate(-1px, 0px); }
+    50% { transform: translate(1px, -1px); }
+    60% { transform: translate(0px, 1px); }
+    70% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 0px); }
+    90% { transform: translate(0px, -1px); }
+    100% { transform: translate(0, 0); }
   }
 }
 
