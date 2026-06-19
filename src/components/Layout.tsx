@@ -60,14 +60,13 @@ export default function Layout({ children }: LayoutProps) {
         const dx = mouseX - dot.x
         const dy = mouseY - dot.y
         const distance = Math.sqrt(dx * dx + dy * dy)
-        const maxDistance = 200
+        const maxDistance = 130
         const mouseInfluence = Math.max(0, 1 - distance / maxDistance)
-        
-        const sizeVariation = Math.sin(time * dot.speed + dot.phase) * 0.3
-        const radius = baseRadius + sizeVariation + mouseInfluence * 3
 
-        // Purple dots that get brighter on hover
-        ctx.fillStyle = `rgba(168, 85, 247, ${0.08 + mouseInfluence * 0.25})`
+        const radius = baseRadius + mouseInfluence * 1.2
+
+        // Barely-there monochrome dots, a faint glow around the cursor
+        ctx.fillStyle = `rgba(255, 255, 255, ${0.025 + mouseInfluence * 0.09})`
         ctx.beginPath()
         ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2)
         ctx.fill()
@@ -90,7 +89,7 @@ export default function Layout({ children }: LayoutProps) {
         className="fixed inset-0 pointer-events-none"
         style={{ zIndex: 0 }}
       />
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative flex min-h-screen flex-col" style={{ zIndex: 1 }}>
         {children}
       </div>
     </div>

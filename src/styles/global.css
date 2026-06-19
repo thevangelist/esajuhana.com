@@ -3,56 +3,106 @@
 @theme {
   --font-family-sans: 'Red Hat Display', system-ui, sans-serif;
 
-  --color-zinc-50: #ffffff;
-  --color-zinc-100: #f5f5f5;
-  --color-zinc-200: #e4e4e4;
-  --color-zinc-400: #a1a1a1;
-  --color-zinc-500: #717171;
-  --color-zinc-600: #525252;
-  --color-zinc-900: #000000;
+  /* Blacked-out monochrome scale (Linear-ish) */
+  --color-zinc-50: #f7f8f8;
+  --color-zinc-100: #e6e7e8;
+  --color-zinc-200: #c4c6c9;
+  --color-zinc-400: #8a8f98;
+  --color-zinc-500: #62666d;
+  --color-zinc-600: #3f4248;
+  --color-zinc-900: #08090a;
 
-  --color-purple-500: #ffffff;
-  --color-purple-600: #f5f5f5;
-
-  --color-yellow-400: #ffffff;
-  --color-yellow-500: #f5f5f5;
+  /* Accents collapsed to monochrome — no colour anywhere */
+  --color-purple-500: #f7f8f8;
+  --color-purple-600: #e6e7e8;
+  --color-yellow-400: #f7f8f8;
+  --color-yellow-500: #e6e7e8;
 }
 
 @layer base {
-  body {
+  html {
     background: #000000;
-    position: relative;
-    overflow-x: hidden;
   }
 
+  body {
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%),
+      #000000;
+    background-attachment: fixed;
+    color: var(--color-zinc-50);
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ultra-fine film grain — barely-there texture, no scanlines */
   body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.03;
+    opacity: 0.025;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
-    animation: tv-noise 0.2s infinite;
+      repeating-linear-gradient(0deg, transparent 0, transparent 1px, rgba(255, 255, 255, 0.5) 1px, rgba(255, 255, 255, 0.5) 2px),
+      repeating-linear-gradient(90deg, transparent 0, transparent 1px, rgba(255, 255, 255, 0.5) 1px, rgba(255, 255, 255, 0.5) 2px);
+    background-size: 3px 3px;
+  }
+}
+
+@layer components {
+  /* Frosted glass surface */
+  .glass {
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 24px 60px -24px rgba(0, 0, 0, 0.7);
+    transition:
+      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  @keyframes tv-noise {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(-1px, 1px); }
-    20% { transform: translate(1px, 0px); }
-    30% { transform: translate(0px, -1px); }
-    40% { transform: translate(-1px, 0px); }
-    50% { transform: translate(1px, -1px); }
-    60% { transform: translate(0px, 1px); }
-    70% { transform: translate(-1px, -1px); }
-    80% { transform: translate(1px, 0px); }
-    90% { transform: translate(0px, -1px); }
-    100% { transform: translate(0, 0); }
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+  }
+
+  /* Transparent at rest — glass surface only appears on hover */
+  .glass-reveal {
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition:
+      background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-reveal:hover {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 24px 60px -24px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
+  }
+
+  /* Small frosted pill / eyebrow */
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 }
 
@@ -61,8 +111,43 @@
     position: relative;
     display: inline;
     text-decoration: underline;
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.1em;
+    text-decoration-color: rgba(255, 255, 255, 0.25);
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+  }
+
+  .hairline {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Journey page styles */
+.journey-page {
+  background: linear-gradient(
+    to bottom,
+    #18181b 0%,
+    #0f0f10 30%,
+    #09090b 60%,
+    #000000 100%
+  );
+  min-height: 100vh;
+}
+
+.journey-reveal {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* SVG branch path animation */
+.branch-animate {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw-branch 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--branch-delay, 0s);
+}
+
+@keyframes draw-branch {
+  to {
+    stroke-dashoffset: 0;
   }
 }
