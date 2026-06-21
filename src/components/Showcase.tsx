@@ -27,6 +27,12 @@ export default function Showcase() {
             </span>
           </span>
         </a>
+        <div className="glass-reveal mt-4 rounded-2xl px-6 py-4 text-center opacity-40 hover:opacity-70 transition-opacity duration-300">
+          <p className="text-sm text-zinc-500 leading-snug">
+            more things are coming.<br />
+            <span className="text-zinc-600">a lot has been built.</span>
+          </p>
+        </div>
       </div>
     </section>
   )
